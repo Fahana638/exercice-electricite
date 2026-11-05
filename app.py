@@ -114,3 +114,17 @@ with onglets[4]:
     st.dataframe(top, hide_index=True)
     st.write(f"Le plus gros relevé : {top.iloc[0]['quartier']} en "
              f"{top.iloc[0]['mois']} ({top.iloc[0]['kwh']:,} kWh).")
+
+    st.markdown("## Conclusion")
+st.markdown(
+    "La consommation suit surtout les heures de courant "
+    "(corrélation de 0.76 dans les quartiers résidentiels) et très peu "
+    "la **chaleur** (-0.15). Quand le courant est disponible plus longtemps, "
+    "les abonnés consomment davantage, alors que la température n'explique "
+    "presque rien. Une corrélation n'est pas une causalité : d'autres facteurs, "
+    "comme le type de quartier, peuvent jouer, et il faudrait une analyse "
+    "plus poussée pour conclure."
+)
+
+with st.expander("Voir les données filtrées"):
+    st.dataframe(filtre, hide_index=True)
