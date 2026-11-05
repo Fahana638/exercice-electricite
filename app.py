@@ -25,3 +25,18 @@ st.write(
     "Question du directeur : la consommation suit-elle la chaleur, "
     "ou les heures de courant ?"
 )
+communes = sorted(df["commune"].unique())
+annees = sorted(df["annee"].unique())
+
+choix_communes = st.sidebar.multiselect("Communes", communes, default=communes)
+choix_annee = st.sidebar.selectbox(
+    "Année", annees, index=len(annees) - 1
+)
+
+if not choix_communes:
+    st.warning("Choisissez au moins une commune dans la barre latérale.")
+    st.stop()
+
+filtre = df[(df["commune"].isin(choix_communes)) & (df["annee"] == choix_annee)]
+
+st.white(len(filtre))
