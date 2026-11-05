@@ -39,4 +39,11 @@ if not choix_communes:
 
 filtre = df[(df["commune"].isin(choix_communes)) & (df["annee"] == choix_annee)]
 
-st.white(len(filtre))
+total = filtre["kwh"].sum()
+par_abonne = filtre["kwh_par_abonne"].mean()
+heures = filtre["heures_courant"].mean()
+
+col1, col2, col3 = st.columns(3)
+col1.metric("Consommation totale", f"{total / 1e6:.2f} millions de kWh")
+col2.metric("kWh par abonné", f"{par_abonne:.1f}")
+col3.metric("Heures de courant par jour", f"{heures:.1f}")
